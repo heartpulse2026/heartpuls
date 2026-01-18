@@ -1,0 +1,23 @@
+{
+  "name": "heart-pulse-iot",
+  "version": "1.0.0",
+  "description": "ESP32 Heart Pulse Monitor with Neon PostgreSQL and Vercel Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ESP32",
+    "PPG",
+    "Heart Pulse",
+    "Dashboard",
+    "Vercel",
+    "Neon"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^8.11.0"
+  }
+}
