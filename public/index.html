@@ -5,47 +5,27 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
 <h2>Live Heart Pulse</h2>
 <h3 id="bpm">BPM: --</h3>
-
 <canvas id="wave"></canvas>
 
 <script>
 const ctx = document.getElementById("wave");
 const chart = new Chart(ctx, {
   type: "line",
-  data: {
-    labels: Array(200).fill(""),
-    datasets: [{
-      data: [],
-      borderWidth: 2,
-      tension: 0.1
-    }]
-  },
-  options: {
-    animation: false,
-    scales: {
-      y: { min: 0, max: 4095 }
-    }
-  }
+  data: { labels: Array(200).fill(""), datasets:[{data:[],borderWidth:2,tension:0.1}] },
+  options:{animation:false,scales:{y:{min:0,max:4095}}}
 });
 
 async function update() {
   const res = await fetch("/api/pulse");
   const data = await res.json();
-
-  if (data.length > 0) {
-    document.getElementById("bpm").innerText =
-      "BPM: " + data[data.length - 1].bpm;
-  }
-
-  chart.data.datasets[0].data = data.map(d => d.signal);
+  if(data.length>0) document.getElementById("bpm").innerText = "BPM: "+data[data.length-1].bpm;
+  chart.data.datasets[0].data = data.map(d=>d.signal);
   chart.update();
 }
 
-setInterval(update, 1000);
+setInterval(update,1000);
 </script>
-
 </body>
 </html>
